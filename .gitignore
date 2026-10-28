@@ -1,0 +1,65 @@
+# Dependencies
+node_modules/
+
+# Electron, Vite, and packaging output
+out/
+dist/
+release/
+build/
+.vite/
+.cache/
+coverage/
+playwright-report/
+test-results/
+*.asar
+
+# TypeScript build metadata
+*.tsbuildinfo
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# SQLite databases and transient journal files
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+prisma/*.db
+prisma/*.sqlite*
+
+# Keep the empty schema template required to initialize the app database.
+!resources/updathon-template.db
+
+# Logs and temporary files
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+*.stackdump
+logs/
+tmp/
+temp/
+*.tmp
+*.temp
+*.swp
+
+# Windows installers and generated binaries
+*.exe
+*.msi
+*.nupkg
+*.blockmap
+*.dll
+electron-builder.env
+.npm/
+
+# Editor and operating-system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/*
+!.vscode/extensions.json

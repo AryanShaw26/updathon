@@ -1,0 +1,72 @@
+{
+  "name": "updathon",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal Hackathon Management and Notification Application",
+  "author": "Updathon",
+  "main": "./out/main/index.js",
+  "scripts": {
+    "dev": "npm run prisma:push && electron-vite dev",
+    "build": "npm run prisma:template && prisma generate && electron-vite build",
+    "package": "npm run build && electron-builder --win nsis portable --config electron-builder.config.cjs",
+    "build:win": "npm run package",
+    "preview": "electron-vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json",
+    "prisma:generate": "prisma generate",
+    "prisma:push": "node scripts/prisma-command.mjs db push",
+    "prisma:template": "node scripts/prisma-command.mjs --template db push"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.0",
+    "dayjs": "^1.11.13",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.18.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "electron": "^45.1.0",
+    "electron-builder": "^26.0.12",
+    "electron-vite": "^3.0.0",
+    "postcss": "^8.4.49",
+    "prisma": "^6.19.0",
+    "tailwindcss": "^3.4.16",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5"
+  },
+  "build": {
+    "appId": "com.updathon.desktop",
+    "productName": "Updathon",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "out/**/*",
+      "package.json",
+      {
+        "from": "node_modules/.prisma/client",
+        "to": "node_modules/.prisma/client",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "extraResources": [
+      {
+        "from": "resources/updathon-template.db",
+        "to": "updathon-template.db"
+      }
+    ],
+    "asarUnpack": [
+      "**/*.node"
+    ],
+    "win": {
+      "target": "dir"
+    }
+  }
+}
